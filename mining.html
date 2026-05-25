@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EMEX-XL Ghana Limited | 4Refueling Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{orange:{DEFAULT:'#E8681A',50:'#FEF3EC',100:'#FDE0CB',500:'#E8681A',600:'#C4541A',700:'#A04015'},charcoal:{DEFAULT:'#1A1A1A',800:'#2A2A2A',900:'#111111'},steel:'#3D4A5C',cream:'#F5F2EE'},fontFamily:{display:['Oswald','sans-serif'],body:['Barlow','sans-serif'],condensed:['Barlow Condensed','sans-serif']}}}}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#E8681A;--charcoal:#1A1A1A;--steel:#3D4A5C;--cream:#F5F2EE;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#111;color:#fff;overflow-x:hidden}
+
+/* Nav */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s ease}
+#navbar.scrolled{background:rgba(17,17,17,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(232,104,26,.3)}
+.nav-link{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#ccc;transition:color .2s;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s}
+.nav-link:hover{color:var(--orange);border-bottom-color:var(--orange)}
+
+/* Hero */
+.hero-bg{position:relative;background:url('https://images.unsplash.com/photo-1605792657660-596af9009e82?w=1920&q=90') center 40%/cover no-repeat}
+.hero-text-shadow{text-shadow:0 2px 20px rgba(0,0,0,.8)}
+
+/* Section headings */
+.section-tag{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600}
+.section-title{font-family:'Oswald',sans-serif;font-weight:700;line-height:1.05}
+
+/* Cards */
+.service-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:all .3s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transition:transform .3s}
+.service-card:hover{background:rgba(232,104,26,.08);border-color:rgba(232,104,26,.35);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+
+/* Metric card */
+.metric-card{border-left:3px solid var(--orange);background:rgba(232,104,26,.07)}
+
+/* Tabs */
+.tab-btn{font-family:'Oswald',sans-serif;letter-spacing:1.5px;font-size:13px;text-transform:uppercase;padding:10px 24px;border:1px solid #ccc;color:#777;transition:all .25s;cursor:pointer;background:#fff}
+.tab-btn.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.tab-content{display:none}.tab-content.active{display:block}
+
+/* Form */
+.form-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;font-family:'Barlow',sans-serif;font-size:15px;transition:border-color .2s;outline:none;width:100%}
+.form-input:focus{border-color:var(--orange)}
+.form-input::placeholder{color:#666}
+.form-label{font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;font-size:12px;text-transform:uppercase;color:#aaa;display:block;margin-bottom:8px}
+
+/* Divider */
+.orange-divider{width:60px;height:3px;background:var(--orange);margin-bottom:20px}
+
+/* Scroll animation */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Toast */
+#toast{position:fixed;bottom:32px;right:32px;z-index:9999;background:#1a1a1a;border:1px solid var(--orange);padding:18px 28px;font-family:'Barlow',sans-serif;transform:translateX(120%);transition:transform .4s ease;max-width:320px}
+#toast.show{transform:translateX(0)}
+
+/* Hamburger */
+#mobile-menu{display:none}
+#mobile-menu.open{display:block}
+
+/* Stripe bg */
+.stripe-bg{background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(232,104,26,.03) 20px,rgba(232,104,26,.03) 40px)}
+
+/* Stats section */
+.stat-value{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--orange);line-height:1}
+
+/* Product card */
+.product-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:all .3s}
+.product-card:hover{border-color:rgba(232,104,26,.4);background:rgba(232,104,26,.06)}
+
+/* Footer */
+footer a{color:#aaa;font-size:13px;transition:color .2s;display:block;margin-bottom:8px}
+footer a:hover{color:var(--orange)}
+
+/* News card */
+.news-card{background:#fff;border:1px solid #e8e0d8;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .3s}
+.news-card:hover{border-color:var(--orange);transform:translateY(-3px);box-shadow:0 8px 30px rgba(232,104,26,.12)}
+
+.news-tag{font-size:11px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;text-transform:uppercase;background:var(--orange);color:#fff;padding:3px 10px;display:inline-block}
+
+/* CTAs */
+.btn-primary{background:var(--orange);color:#fff;font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;padding:14px 36px;font-size:14px;border:none;cursor:pointer;transition:all .25s;display:inline-block}
+.btn-primary:hover{background:#C4541A;transform:translateY(-1px)}
+.btn-outline{border:2px solid rgba(255,255,255,.5);color:#fff;font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;padding:12px 34px;font-size:14px;background:transparent;cursor:pointer;transition:all .25s;display:inline-block}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+
+/* Section bg alternates */
+.bg-dark{background:#111}
+.bg-dark2{background:#161616}
+.bg-dark3{background:#1a1a1a}
+
+/* Industry cards */
+.industry-card{position:relative;overflow:hidden;height:200px;cursor:pointer}
+.industry-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:brightness(.5)}
+.industry-card:hover img{transform:scale(1.07);filter:brightness(.6)}
+.industry-card-label{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(0,0,0,.8),transparent)}
+
+/* About story section */
+.story-img{object-fit:cover;filter:brightness(.85)}
+
+/* Timeline */
+.timeline-dot{width:12px;height:12px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:5px}
+.timeline-line{width:2px;background:rgba(232,104,26,.3);flex:1}
+
+/* Quote */
+.quote-box{border-left:4px solid var(--orange);padding-left:24px}
+</style>
+</head>
+<body>
+
+<!-- =========== NAVBAR =========== -->
+<nav id="navbar" class="px-6 lg:px-16 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3">
+      <div style="font-family:'Oswald',sans-serif">
+        <span style="color:var(--orange);font-size:24px;font-weight:700;letter-spacing:1px">EMEX</span><span style="color:#fff;font-size:24px;font-weight:700">-XL</span>
+        <div style="font-size:9px;letter-spacing:3px;color:#aaa;text-transform:uppercase;margin-top:-2px">4Refueling Solutions</div>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="#about" class="nav-link">About Us</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#products" class="nav-link">Products</a>
+      <a href="#sustainability" class="nav-link">Safety &amp; ESG</a>
+      <a href="#news" class="nav-link">News</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="hidden lg:block btn-primary text-sm py-3 px-6">Get a Quote</a>
+      <button id="hamburger" class="lg:hidden text-white text-2xl" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden mt-4 pb-4 border-t border-gray-700">
+    <div class="flex flex-col gap-3 pt-4 px-2">
+      <a href="#about" class="nav-link" onclick="toggleMenu()">About Us</a>
+      <a href="#services" class="nav-link" onclick="toggleMenu()">Services</a>
+      <a href="#products" class="nav-link" onclick="toggleMenu()">Products</a>
+      <a href="#sustainability" class="nav-link" onclick="toggleMenu()">Safety &amp; ESG</a>
+      <a href="#news" class="nav-link" onclick="toggleMenu()">News</a>
+      <a href="#contact" class="nav-link" onclick="toggleMenu()">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- =========== HERO =========== -->
+<section class="hero-bg min-h-screen flex items-end relative" style="padding-top:80px">
+  <!-- Multi-layer overlay for depth and contrast -->
+  <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(10,8,6,.92) 0%,rgba(15,12,8,.82) 38%,rgba(20,15,10,.45) 65%,rgba(232,104,26,.12) 100%)"></div>
+  <!-- Bottom fade for stats bar -->
+  <div class="absolute bottom-0 left-0 right-0" style="height:200px;background:linear-gradient(to top,rgba(10,8,6,.95) 0%,transparent 100%)"></div>
+  <!-- Subtle orange vignette right edge -->
+  <div class="absolute inset-0" style="background:radial-gradient(ellipse at 90% 50%,rgba(232,104,26,.18) 0%,transparent 60%)"></div>
+
+  <!-- Ghana flag colour bar accent top -->
+  <div class="absolute top-0 left-0 right-0 flex" style="height:4px">
+    <div style="flex:1;background:#006B3F"></div>
+    <div style="flex:1;background:#FCD116"></div>
+    <div style="flex:1;background:#CE1126"></div>
+  </div>
+
+  <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-16 pb-0">
+    <!-- Main hero content -->
+    <div class="grid lg:grid-cols-12 gap-8 items-end pb-24 pt-32">
+      <div class="lg:col-span-7 fade-up">
+        <!-- Tag pill -->
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.4);backdrop-filter:blur(4px)">
+          <span style="width:6px;height:6px;background:var(--orange);border-radius:50%;display:inline-block;animation:pulse-dot 2s infinite"></span>
+          <span class="section-tag" style="font-size:11px">Ghana's Premier Fuel Solutions Partner</span>
+        </div>
+        <h1 class="section-title text-white mb-5 hero-text-shadow" style="font-size:clamp(3rem,6.5vw,6rem);letter-spacing:-1px;line-height:.98">
+          Powering<br/><span style="color:var(--orange);-webkit-text-stroke:1px rgba(232,104,26,.3)">Industry</span><br/>Across Ghana
+        </h1>
+        <p class="mb-8 fade-up" style="font-size:17px;line-height:1.85;max-width:520px;color:rgba(255,255,255,.78)">
+          EMEX-PL delivers reliable bulk fuel supply, on-site refueling, and lubricant solutions 24/7 — from Accra to the Ashanti goldfields.
+        </p>
+        <div class="flex flex-wrap gap-4 fade-up">
+          <a href="#services" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px">
+            <i class="fas fa-gas-pump"></i>Our Services
+          </a>
+          <a href="#about" class="btn-outline" style="display:inline-flex;align-items:center;gap:10px">
+            <i class="fas fa-play-circle"></i>Who We Are
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: stacked image cards -->
+      <div class="hidden lg:flex lg:col-span-5 flex-col gap-3 pb-24 fade-up">
+        <div style="position:relative;overflow:hidden;height:148px;border:1px solid rgba(255,255,255,.1)">
+          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80" alt="Ghana open pit mining" style="width:100%;height:100%;object-fit:cover;filter:brightness(.65) saturate(1.1)"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.5),transparent)"></div>
+          <div style="position:absolute;bottom:12px;left:12px">
+            <div style="font-family:'Oswald',sans-serif;color:#fff;font-size:15px;letter-spacing:1px">OPEN-PIT MINING</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.6);letter-spacing:2px;text-transform:uppercase">Ashanti Region, Ghana</div>
+          </div>
+          <div style="position:absolute;top:12px;right:12px;background:var(--orange);padding:2px 10px">
+            <span style="font-size:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;color:#fff;text-transform:uppercase">Active</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div style="position:relative;overflow:hidden;height:110px;border:1px solid rgba(255,255,255,.1)">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" alt="Construction Ghana" style="width:100%;height:100%;object-fit:cover;filter:brightness(.6)"/>
+            <div style="position:absolute;bottom:8px;left:8px;font-family:'Oswald',sans-serif;color:#fff;font-size:13px">CONSTRUCTION</div>
+          </div>
+          <div style="position:relative;overflow:hidden;height:110px;border:1px solid rgba(255,255,255,.1)">
+            <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&q=80" alt="Fuel tanker" style="width:100%;height:100%;object-fit:cover;filter:brightness(.6)"/>
+            <div style="position:absolute;bottom:8px;left:8px;font-family:'Oswald',sans-serif;color:#fff;font-size:13px">FUEL DELIVERY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar — full width, sits at bottom of hero -->
+    <div class="relative -mx-6 lg:-mx-16 fade-up" style="background:rgba(10,8,6,.88);border-top:1px solid rgba(232,104,26,.35);backdrop-filter:blur(8px)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-16 py-5 grid grid-cols-2 md:grid-cols-4 gap-0 divide-x" style="divide-color:rgba(255,255,255,.08)">
+        <div class="px-6 first:pl-0">
+          <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--orange);line-height:1">2017</div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px">Established</div>
+        </div>
+        <div class="px-6">
+          <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--orange);line-height:1">24/7</div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px">Operations</div>
+        </div>
+        <div class="px-6">
+          <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--orange);line-height:1">460K+</div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px">Litres / Month</div>
+        </div>
+        <div class="px-6">
+          <div style="font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--orange);line-height:1">100%</div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px">Reliable Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== TICKER STRIP =========== -->
+<div style="background:var(--orange);padding:12px 0;overflow:hidden;white-space:nowrap">
+  <div style="display:inline-block;animation:ticker 30s linear infinite">
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ BULK FUEL SUPPLY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ ON-SITE REFUELING</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ BULK LUBRICANT SUPPLY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ MINING SOLUTIONS</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ CONSTRUCTION INDUSTRY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ TRANSPORT & LOGISTICS</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ 24/7 DELIVERY ANYWHERE IN GHANA</span>
+    <span class="mx-16 text-white opacity-40">|</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ BULK FUEL SUPPLY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ ON-SITE REFUELING</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ BULK LUBRICANT SUPPLY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ MINING SOLUTIONS</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ CONSTRUCTION INDUSTRY</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ TRANSPORT & LOGISTICS</span>
+    <span class="text-white font-bold mx-8" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px">⬡ 24/7 DELIVERY ANYWHERE IN GHANA</span>
+  </div>
+</div>
+
+<!-- =========== ABOUT / STORY =========== -->
+<section id="about" class="py-24 px-6 lg:px-16" style="background:#fff">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: story text -->
+      <div class="fade-up">
+        <div class="section-tag mb-4">Who We Are</div>
+        <div class="orange-divider"></div>
+        <h2 class="section-title mb-6" style="color:#1a1a1a;font-size:clamp(2rem,4vw,3.2rem)">
+          Ghana's Emerging Leader in <span style="color:var(--orange)">Mobile On-Site Refueling</span>
+        </h2>
+        <p style="line-height:1.9;color:#444;margin-bottom:20px">
+          EMEX-PL Ghana Limited is a privately owned, limited liability Oil Marketing Company incorporated in August 2017 (Reg. No. CS225942017). We commenced operations in September 2017 under Ghana's Companies Code, 1963 (Act 179).
+        </p>
+        <p style="line-height:1.9;color:#444;margin-bottom:20px">
+          We understand that fuel can account for up to 40% of operational costs. That's why our mission is not simply to supply petroleum products — but to become a strategic partner that frees our clients from non-core operations, letting them focus on what they do best.
+        </p>
+        <p style="line-height:1.9;color:#444;margin-bottom:32px">
+          With strategic partnerships with mining companies like Rocksure International and Thonket Plantpool Limited, we deliver fuel 24/7 directly to client equipment, billed per delivered quantity — no overstocking, no pilfering, no wasted budget.
+        </p>
+
+        <!-- Timeline -->
+        <div class="flex gap-4 mb-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line mt-2"></div>
+          </div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:1px;color:var(--orange)">AUGUST 2017</div>
+            <div style="font-weight:600;color:#1a1a1a;margin-bottom:4px">Company Incorporated</div>
+            <div style="font-size:14px;color:#666;margin-bottom:24px">Registered as EMEX-XL Ghana Limited under registration number CS225942017.</div>
+          </div>
+        </div>
+        <div class="flex gap-4 mb-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line mt-2"></div>
+          </div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:1px;color:var(--orange)">SEPTEMBER 2017</div>
+            <div style="font-weight:600;color:#1a1a1a;margin-bottom:4px">Operations Begin</div>
+            <div style="font-size:14px;color:#666;margin-bottom:24px">Commenced as a licensed Oil Marketing Company (OMC) serving Ghana's petroleum distribution network.</div>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+          </div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:1px;color:var(--orange)">TODAY</div>
+            <div class="text-white font-medium mb-1">Emerging Industry Leader</div>
+            <div style="font-size:14px;color:#666">Delivering 200,000–460,000+ litres per month across mining, construction, transport, and retail sectors.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Ghana mining image collage -->
+      <div class="fade-up grid grid-cols-2 gap-3">
+        <div class="col-span-2 relative overflow-hidden" style="height:270px;border:2px solid #e8e0d8;box-shadow:0 8px 40px rgba(0,0,0,.1)">
+          <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=900&q=85" alt="Ghana gold mine open pit" style="width:100%;height:100%;object-fit:cover;object-position:center"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%)"></div>
+          <div style="position:absolute;bottom:16px;left:16px">
+            <div style="font-family:'Oswald',sans-serif;color:#fff;font-size:17px;font-weight:700;letter-spacing:1px">GHANA OPEN-PIT MINING</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.75);letter-spacing:2px;text-transform:uppercase">Ashanti Region • Fueled by EMEX-XL</div>
+          </div>
+          <div style="position:absolute;top:14px;right:14px;background:var(--orange);padding:4px 12px">
+            <span style="font-size:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;color:#fff;text-transform:uppercase;font-weight:700">Active Partner</span>
+          </div>
+        </div>
+        <div class="relative overflow-hidden" style="height:170px;border:2px solid #e8e0d8">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&q=80" alt="Construction site Ghana" style="width:100%;height:100%;object-fit:cover;filter:saturate(1.1)"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%)"></div>
+          <div style="position:absolute;bottom:10px;left:10px;font-family:'Oswald',sans-serif;color:#fff;font-size:14px;letter-spacing:1px">CONSTRUCTION</div>
+        </div>
+        <div class="relative overflow-hidden" style="height:170px;border:2px solid #e8e0d8">
+          <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=500&q=80" alt="Fuel tanker supply Ghana" style="width:100%;height:100%;object-fit:cover;filter:saturate(1.1)"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%)"></div>
+          <div style="position:absolute;bottom:10px;left:10px;font-family:'Oswald',sans-serif;color:#fff;font-size:14px;letter-spacing:1px">FUEL DELIVERY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision / Mission / Values -->
+    <div class="mt-20 grid md:grid-cols-3 gap-6 fade-up" id="vmv-cards">
+      <div class="p-8" style="background:#f8f5f1;border:1px solid #e8e0d8;border-bottom:3px solid var(--orange);transition:all .3s">
+        <div style="color:var(--orange);font-size:32px;margin-bottom:16px"><i class="fas fa-eye"></i></div>
+        <h3 class="section-title mb-3" style="font-size:22px;color:#1a1a1a">Our Vision</h3>
+        <div class="quote-box">
+          <p style="line-height:1.8;font-style:italic;color:#555">
+            To be a leader in oil trading, distribution and related services in Ghana — providing a strong sense of identity and a compelling image of a preferred future.
+          </p>
+        </div>
+      </div>
+      <div class="p-8" style="background:#f8f5f1;border:1px solid #e8e0d8;border-bottom:3px solid var(--orange);transition:all .3s">
+        <div style="color:var(--orange);font-size:32px;margin-bottom:16px"><i class="fas fa-bullseye"></i></div>
+        <h3 class="section-title mb-3" style="font-size:22px;color:#1a1a1a">Our Mission</h3>
+        <p class="text-gray-300 mb-3" style="line-height:1.8">
+          <strong class="text-white">For our clients:</strong> Create sustainable value in all business relationships.
+        </p>
+        <p class="text-gray-300 mb-3" style="line-height:1.8">
+          <strong class="text-white">For our people:</strong> Become the employer of choice through openness and professionalism.
+        </p>
+        <p class="text-gray-300" style="line-height:1.8">
+          <strong class="text-white">For our community:</strong> Invest profits in Health and Educational sector initiatives.
+        </p>
+      </div>
+      <div class="p-8" style="background:#f8f5f1;border:1px solid #e8e0d8;border-bottom:3px solid var(--orange);transition:all .3s">
+        <div style="color:var(--orange);font-size:32px;margin-bottom:16px"><i class="fas fa-shield-halved"></i></div>
+        <h3 class="section-title mb-3" style="font-size:22px;color:#1a1a1a">Core Values</h3>
+        <ul class="space-y-2">
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Teamwork</li>
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Mutual Respect</li>
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Efficiency</li>
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Quality</li>
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Integrity</li>
+          <li style="display:flex;align-items:center;gap:12px;color:#444"><i class="fas fa-check-circle" style="color:var(--orange)"></i> Strict Code of Ethics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== SERVICES =========== -->
+<section id="services" class="py-24 px-6 lg:px-16" style="background:#0f0d0b;background-image:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(232,104,26,.025) 20px,rgba(232,104,26,.025) 40px)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <div class="section-tag mb-4">What We Do</div>
+      <div class="orange-divider mx-auto"></div>
+      <h2 class="section-title text-white" style="font-size:clamp(2rem,4vw,3rem)">Services Offered</h2>
+      <p class="text-gray-400 mt-4 max-w-xl mx-auto">End-to-end petroleum solutions engineered for the industries that keep Ghana moving.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Bulk Fuel -->
+      <div class="service-card p-8 fade-up">
+        <div class="mb-6 relative overflow-hidden" style="height:180px">
+          <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=700&q=85" alt="Bulk fuel tanker Ghana" class="w-full h-full object-cover" style="filter:brightness(.7)"/>
+        </div>
+        <div style="color:var(--orange);font-size:36px;margin-bottom:12px"><i class="fas fa-truck-moving"></i></div>
+        <h3 class="section-title text-white mb-3" style="font-size:22px">Bulk Fuel Supply</h3>
+        <p class="text-gray-400 mb-4" style="line-height:1.8">
+          We deliver all grades of gasoline and diesel from major refineries in Kumasi, Takoradi, and Tema. Serving gas stations, mining, telecoms, and large fleet operators with 200,000–460,000 litres/month.
+        </p>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Top-tier delivery fleet</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Direct refinery sourcing</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Competitive pricing plans</li>
+        </ul>
+      </div>
+
+      <!-- On-site refueling -->
+      <div class="service-card p-8 fade-up">
+        <div class="mb-6 relative overflow-hidden" style="height:180px">
+          <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=700&q=85" alt="On-site refueling Ghana mine" class="w-full h-full object-cover" style="filter:brightness(.6)"/>
+        </div>
+        <div style="color:var(--orange);font-size:36px;margin-bottom:12px"><i class="fas fa-gas-pump"></i></div>
+        <h3 class="section-title text-white mb-3" style="font-size:22px">On-Site Refueling</h3>
+        <p class="text-gray-400 mb-4" style="line-height:1.8">
+          Let us manage your refueling operations end-to-end. We deploy commercial-grade tanks, pumps, filters, nozzles and dedicated staff to deliver fuel directly into your equipment 24/7.
+        </p>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>24/7 shift system</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Zero pilfering risk</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Pay per delivered quantity</li>
+        </ul>
+      </div>
+
+      <!-- Lubricants -->
+      <div class="service-card p-8 fade-up">
+        <div class="mb-6 relative overflow-hidden" style="height:180px">
+          <img src="https://images.unsplash.com/photo-1636761671067-c2bb7b01f6e3?w=600&q=80" alt="Lubricant supply" class="w-full h-full object-cover" style="filter:brightness(.65)"/>
+        </div>
+        <div style="color:var(--orange);font-size:36px;margin-bottom:12px"><i class="fas fa-oil-can"></i></div>
+        <h3 class="section-title text-white mb-3" style="font-size:22px">Bulk Lubricant Supply</h3>
+        <p class="text-gray-400 mb-4" style="line-height:1.8">
+          High-grade mining and industrial lubricants stored and supplied at competitive rates. We carry Castrol, Ecolubrium, Caltex, and Texaco — all rigorously tested before and after use.
+        </p>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Castrol / Caltex / Texaco</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Heat-tolerant mining grades</li>
+          <li><i class="fas fa-chevron-right mr-2" style="color:var(--orange)"></i>Below-market pricing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== TARGET INDUSTRIES =========== -->
+<section class="py-24 px-6 lg:px-16" style="background:#f9f6f2">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 fade-up">
+      <div>
+        <div class="section-tag mb-4">Industries We Serve</div>
+        <div class="orange-divider"></div>
+        <h2 class="section-title" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#1a1a1a">Built for Ghana's<br/>Most Demanding Sectors</h2>
+      </div>
+      <p style="color:#666;max-width:340px;margin-top:16px;line-height:1.8">
+        From open-pit mines to urban construction sites, our fuel infrastructure is engineered for reliability where it matters most.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-up">
+      <div class="industry-card">
+        <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=600&q=80" alt="Ghana open pit gold mine"/>
+        <div class="industry-card-label">
+          <div class="section-title text-white" style="font-size:20px">Mining</div>
+          <div class="text-gray-300 text-xs tracking-widest uppercase">Open-pit & Underground</div>
+        </div>
+      </div>
+      <div class="industry-card">
+        <img src="https://images.unsplash.com/photo-1601933985824-0bde5f3729d2?w=600&q=80" alt="Ghana transport fleet"/>
+        <div class="industry-card-label">
+          <div class="section-title text-white" style="font-size:20px">Transport</div>
+          <div class="text-gray-300 text-xs tracking-widest uppercase">Fleet & Logistics</div>
+        </div>
+      </div>
+      <div class="industry-card">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Ghana construction site"/>
+        <div class="industry-card-label">
+          <div class="section-title text-white" style="font-size:20px">Construction</div>
+          <div class="text-gray-300 text-xs tracking-widest uppercase">Sites & Infrastructure</div>
+        </div>
+      </div>
+      <div class="industry-card">
+        <img src="https://images.unsplash.com/photo-1533709475007-f7b23ea9b17d?w=500&q=80" alt="Retail & Telecoms"/>
+        <div class="industry-card-label">
+          <div class="section-title text-white" style="font-size:20px">Retail</div>
+          <div class="text-gray-300 text-xs tracking-widest uppercase">OMCs & Telecoms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PRODUCTS =========== -->
+<section id="products" class="py-24 px-6 lg:px-16" style="background:#111109">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <div class="section-tag mb-4">Petroleum Products</div>
+      <div class="orange-divider mx-auto"></div>
+      <h2 class="section-title text-white" style="font-size:clamp(2rem,4vw,3rem)">Products Offered</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 fade-up">
+      <!-- AGO -->
+      <div class="product-card p-8">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-truck-front" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-1">AGO</div>
+            <h3 class="section-title text-white" style="font-size:20px">Automotive Gas Oil</h3>
+          </div>
+        </div>
+        <p class="text-gray-400 mb-5" style="line-height:1.8">
+          High-quality Ultra-Low Sulphur Diesel (ULSD) in any quantity. Serving transport & logistics, telecoms, mining, and construction industries across Ghana.
+        </p>
+        <div class="flex items-center gap-2 mt-4">
+          <div class="text-xs uppercase tracking-widest text-gray-500">Key clients:</div>
+          <div class="text-sm text-gray-300">Mining · Telecoms · Construction</div>
+        </div>
+        <div class="mt-4 h-px" style="background:rgba(232,104,26,.2)"></div>
+        <div class="mt-4 flex items-center gap-2">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%"></div>
+          <span class="text-green-400 text-sm">Available Now</span>
+        </div>
+      </div>
+
+      <!-- PMS -->
+      <div class="product-card p-8">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-gas-pump" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-1">PMS</div>
+            <h3 class="section-title text-white" style="font-size:20px">Premium Motor Spirit</h3>
+          </div>
+        </div>
+        <p class="text-gray-400 mb-5" style="line-height:1.8">
+          A product of fractional distillation of petroleum, primarily used for light road vehicles — cars, motorbikes, and small vans. Supplied to retail outlets across Ghana's oil marketing industry.
+        </p>
+        <div class="flex items-center gap-2 mt-4">
+          <div class="text-xs uppercase tracking-widest text-gray-500">Key clients:</div>
+          <div class="text-sm text-gray-300">Retail OMCs · Light Vehicles</div>
+        </div>
+        <div class="mt-4 h-px" style="background:rgba(232,104,26,.2)"></div>
+        <div class="mt-4 flex items-center gap-2">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%"></div>
+          <span class="text-green-400 text-sm">Available Now</span>
+        </div>
+      </div>
+
+      <!-- Lubes -->
+      <div class="product-card p-8">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-oil-can" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-1">LUBES</div>
+            <h3 class="section-title text-white" style="font-size:20px">Lubricating Oils &amp; Greases</h3>
+          </div>
+        </div>
+        <p class="text-gray-400 mb-5" style="line-height:1.8">
+          Premium mining-grade lubricants from Castrol, Ecolubrium, Caltex, and Texaco. Heat-tolerant formulations designed to withstand extreme CIL plant and equipment demands.
+        </p>
+        <div class="flex items-center gap-2 mt-4">
+          <div class="text-xs uppercase tracking-widest text-gray-500">Brands:</div>
+          <div class="text-sm text-gray-300">Castrol · Caltex · Texaco · Ecolubrium</div>
+        </div>
+        <div class="mt-4 h-px" style="background:rgba(232,104,26,.2)"></div>
+        <div class="mt-4 flex items-center gap-2">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%"></div>
+          <span class="text-green-400 text-sm">Available Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== KEY PROJECTS =========== -->
+<section class="bg-dark2 py-24 px-6 lg:px-16">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-up">
+      <div class="section-tag mb-4">Portfolio</div>
+      <div class="orange-divider mx-auto"></div>
+      <h2 class="section-title text-white" style="font-size:clamp(2rem,4vw,3rem)">Key Projects</h2>
+      <p class="text-gray-400 mt-4 max-w-lg mx-auto">Trusted by Ghana's major mining and industrial operators for fuel management excellence.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 fade-up">
+      <div class="service-card overflow-hidden">
+        <div class="relative" style="height:240px">
+          <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=800&q=85" alt="Asanko gold mine Ghana open pit" class="w-full h-full object-cover" style="filter:brightness(.55)"/>
+          <div class="absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 60%)">
+            <div class="section-tag mb-1">Mining Partner</div>
+            <h3 class="section-title text-white" style="font-size:24px">Rocksure International — Asanko</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-gray-400" style="line-height:1.8">
+            Strategic on-site fuel management partnership with Rocksure International at the Asanko mining site. EMEX-XL deploys dedicated refueling staff and equipment for 24/7 heavy machine fueling operations.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">On-site Refueling</span>
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">24/7 Operations</span>
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">Heavy Equipment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card overflow-hidden">
+        <div class="relative" style="height:240px">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Thonket Plantpool construction project" class="w-full h-full object-cover" style="filter:brightness(.55)"/>
+          <div class="absolute inset-0 flex flex-col justify-end p-6" style="background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 60%)">
+            <div class="section-tag mb-1">Construction Partner</div>
+            <h3 class="section-title text-white" style="font-size:24px">Thonket Plantpool Limited</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-gray-400" style="line-height:1.8">
+            Comprehensive fuel supply and lubricant management for Thonket Plantpool's construction fleet. EMEX-XL manages all aspects of fuel logistics, helping Thonket focus on their core construction activities.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">Fleet Management</span>
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">Bulk Supply</span>
+            <span class="text-xs px-3 py-1" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3);color:var(--orange)">Lubricants</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== SAFETY & ESG METRICS =========== -->
+<section id="sustainability" class="bg-dark stripe-bg py-24 px-6 lg:px-16">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-start mb-20">
+      <div class="fade-up">
+        <div class="section-tag mb-4">Safety &amp; ESG</div>
+        <div class="orange-divider"></div>
+        <h2 class="section-title text-white mb-6" style="font-size:clamp(2rem,4vw,3rem)">Health, Safety &amp;<br/>Environmental Policy</h2>
+        <p class="text-gray-300 mb-6" style="line-height:1.9">
+          EMEX-XL is committed to the health, safety, and welfare of our entire staff and to a healthy, safe working environment across all operations. We aim to be the benchmark of best practice in environment, health, and safety.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex gap-4">
+            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-shield-halved" style="color:var(--orange);font-size:14px"></i>
+            </div>
+            <div class="text-gray-300" style="line-height:1.8">Prevention of occupational and non-occupational disorders and diseases, providing a safe work environment for all staff members.</div>
+          </li>
+          <li class="flex gap-4">
+            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-leaf" style="color:var(--orange);font-size:14px"></i>
+            </div>
+            <div class="text-gray-300" style="line-height:1.8">Pursuing pollution prevention, energy conservation, and waste reduction across all our operations.</div>
+          </li>
+          <li class="flex gap-4">
+            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-hard-hat" style="color:var(--orange);font-size:14px"></i>
+            </div>
+            <div class="text-gray-300" style="line-height:1.8">Safe working procedures ensuring employees and subcontractors are protected from hazards at all times.</div>
+          </li>
+          <li class="flex gap-4">
+            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-book-open" style="color:var(--orange);font-size:14px"></i>
+            </div>
+            <div class="text-gray-300" style="line-height:1.8">Adequate guidance, instruction and supervision when introducing new substances, machinery, equipment, or processes.</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Metrics / counters -->
+      <div class="fade-up" id="metrics-section">
+        <div class="section-tag mb-8">Live Performance Metrics</div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="metric-card p-6">
+            <div class="stat-value" id="c-hours">0</div>
+            <div class="text-gray-400 mt-2 text-sm uppercase tracking-widest">Safe Hours Worked</div>
+          </div>
+          <div class="metric-card p-6">
+            <div class="stat-value" id="c-incidents">0</div>
+            <div class="text-gray-400 mt-2 text-sm uppercase tracking-widest">Lost Time Incidents (2024)</div>
+          </div>
+          <div class="metric-card p-6">
+            <div class="stat-value" id="c-litres">0</div>
+            <div class="text-gray-400 mt-2 text-sm uppercase tracking-widest">Litres Delivered / Month</div>
+          </div>
+          <div class="metric-card p-6">
+            <div class="stat-value" id="c-clients">0</div>
+            <div class="text-gray-400 mt-2 text-sm uppercase tracking-widest">Active Industry Clients</div>
+          </div>
+        </div>
+
+        <!-- ESG badges -->
+        <div class="mt-6 p-6" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">
+          <div class="section-tag mb-4">ESG Commitments</div>
+          <div class="flex flex-wrap gap-3">
+            <span class="flex items-center gap-2 text-sm text-gray-300 px-3 py-2" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)">
+              <i class="fas fa-leaf text-green-400"></i> Environmental Compliance
+            </span>
+            <span class="flex items-center gap-2 text-sm text-gray-300 px-3 py-2" style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)">
+              <i class="fas fa-people-group text-blue-400"></i> Community Investment
+            </span>
+            <span class="flex items-center gap-2 text-sm text-gray-300 px-3 py-2" style="background:rgba(232,104,26,.08);border:1px solid rgba(232,104,26,.2)">
+              <i class="fas fa-handshake" style="color:var(--orange)"></i> Ethical Governance
+            </span>
+            <span class="flex items-center gap-2 text-sm text-gray-300 px-3 py-2" style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2)">
+              <i class="fas fa-recycle text-purple-400"></i> Waste Reduction
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== NEWS / INVESTORS =========== -->
+<section id="news" class="py-24 px-6 lg:px-16" style="background:#fff">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 fade-up">
+      <div>
+        <div class="section-tag mb-4">Media Centre</div>
+        <div class="orange-divider"></div>
+        <h2 class="section-title" style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#1a1a1a">News &amp; Investor Relations</h2>
+      </div>
+      <!-- Tab buttons -->
+      <div class="flex mt-6 md:mt-0">
+        <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">Company News</button>
+        <button class="tab-btn" onclick="switchTab('reports')" id="tab-reports">Financial Reports</button>
+      </div>
+    </div>
+
+    <!-- Company News -->
+    <div id="tab-content-news" class="tab-content active fade-up">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="news-card overflow-hidden">
+          <div class="relative" style="height:180px">
+            <img src="https://images.unsplash.com/photo-1565688527891-63cdc3df0ded?w=500&q=80" alt="Fuel expansion news" class="w-full h-full object-cover" style="filter:brightness(.6)"/>
+          </div>
+          <div class="p-6">
+            <div class="news-tag mb-3">Operations</div>
+            <h4 style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px">EMEX-XL Expands Mobile Refueling Fleet Across Northern Ghana</h4>
+            <p style="font-size:14px;color:#666;margin-bottom:16px;line-height:1.7">EMEX-XL Ghana Limited announces the addition of six new delivery tankers, increasing monthly delivery capacity to serve growing demand in the Northern and Ashanti regions.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">March 2025</span>
+              <a href="#" class="text-orange-500 text-sm hover:underline" style="color:var(--orange)">Read More →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-card overflow-hidden">
+          <div class="relative" style="height:180px">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500&q=80" alt="Partnership news" class="w-full h-full object-cover" style="filter:brightness(.55)"/>
+          </div>
+          <div class="p-6">
+            <div class="news-tag mb-3">Partnership</div>
+            <h4 style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px">New Strategic Supply Agreement Signed with Mining Sector Partner</h4>
+            <p style="font-size:14px;color:#666;margin-bottom:16px;line-height:1.7">EMEX-XL secures another major mining company partnership, extending its on-site refueling services to a prominent gold mining operation in the Western Region.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">January 2025</span>
+              <a href="#" class="text-orange-500 text-sm hover:underline" style="color:var(--orange)">Read More →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-card overflow-hidden">
+          <div class="relative" style="height:180px">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&q=80" alt="Safety initiative" class="w-full h-full object-cover" style="filter:brightness(.55)"/>
+          </div>
+          <div class="p-6">
+            <div class="news-tag mb-3">Safety</div>
+            <h4 style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:8px">EMEX-XL Achieves 50,000 Incident-Free Hours at All Active Sites</h4>
+            <p style="font-size:14px;color:#666;margin-bottom:16px;line-height:1.7">The company celebrates a major health and safety milestone as all active on-site refueling projects record zero lost-time incidents across Q1 2025.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">February 2025</span>
+              <a href="#" class="text-orange-500 text-sm hover:underline" style="color:var(--orange)">Read More →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Financial Reports -->
+    <div id="tab-content-reports" class="tab-content fade-up">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-6 flex items-start gap-4" style="background:#fff;border:1px solid #e8e0d8;box-shadow:0 2px 8px rgba(0,0,0,.05)">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.1);border:1px solid rgba(232,104,26,.25)">
+            <i class="fas fa-file-pdf" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div class="flex-1">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:4px">Annual Report</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:600;color:#1a1a1a;margin-bottom:4px">FY 2024 Annual Report</div>
+            <div style="font-size:14px;color:#666">Full financial statements, operations review, and strategic outlook for FY2024.</div>
+            <a href="#" class="text-sm mt-3 inline-block" style="color:var(--orange)"><i class="fas fa-download mr-1"></i> Download PDF</a>
+          </div>
+          <div class="text-xs text-gray-600">Q1 2025</div>
+        </div>
+        <div class="service-card p-6 flex items-start gap-4">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-chart-line" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div class="flex-1">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:4px">Quarterly</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:600;color:#1a1a1a;margin-bottom:4px">Q4 2024 Performance Report</div>
+            <div style="font-size:14px;color:#666">Volume delivered, revenue summary, and operational highlights for Q4 2024.</div>
+            <a href="#" class="text-sm mt-3 inline-block" style="color:var(--orange)"><i class="fas fa-download mr-1"></i> Download PDF</a>
+          </div>
+          <div class="text-xs text-gray-600">Feb 2025</div>
+        </div>
+        <div class="service-card p-6 flex items-start gap-4">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-file-contract" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div class="flex-1">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:4px">Governance</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:600;color:#1a1a1a;margin-bottom:4px">Corporate Governance Statement 2024</div>
+            <div style="font-size:14px;color:#666">Board structure, ethics framework, and stakeholder engagement overview.</div>
+            <a href="#" class="text-sm mt-3 inline-block" style="color:var(--orange)"><i class="fas fa-download mr-1"></i> Download PDF</a>
+          </div>
+          <div class="text-xs text-gray-600">Jan 2025</div>
+        </div>
+        <div class="service-card p-6 flex items-start gap-4">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+            <i class="fas fa-leaf" style="color:var(--orange);font-size:20px"></i>
+          </div>
+          <div class="flex-1">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:4px">Sustainability</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:600;color:#1a1a1a;margin-bottom:4px">ESG &amp; Sustainability Report 2024</div>
+            <div style="font-size:14px;color:#666">Environmental, social, and governance metrics with community impact assessment.</div>
+            <a href="#" class="text-sm mt-3 inline-block" style="color:var(--orange)"><i class="fas fa-download mr-1"></i> Download PDF</a>
+          </div>
+          <div class="text-xs text-gray-600">Mar 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== CONTACT FORM =========== -->
+<section id="contact" class="py-24 px-6 lg:px-16" style="background:#0f0d0b">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <!-- Left info -->
+      <div class="fade-up">
+        <div class="section-tag mb-4">Get In Touch</div>
+        <div class="orange-divider"></div>
+        <h2 class="section-title text-white mb-6" style="font-size:clamp(2rem,4vw,3rem)">Partner With<br/><span style="color:var(--orange)">EMEX-PL</span></h2>
+        <p class="text-gray-300 mb-10" style="line-height:1.9">
+          Whether you're a vendor, procurement manager, or industry partner — our team is ready to discuss how EMEX-XL can support your fuel management needs. Fill in the form and we'll respond within one business day.
+        </p>
+
+        <!-- Contact details -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-location-dot" style="color:var(--orange)"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Head Office — Accra</div>
+              <div class="text-gray-400 text-sm">Jaria Hse. No.21 Osu Badu Street<br/>Dzorwulu-Accra<br/>P.O.Box 6943 Accra North, Ghana</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-phone" style="color:var(--orange)"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Telephone</div>
+              <div class="text-gray-400 text-sm">+233 (0) 30 278 3197<br/>+233 (0) 24 437 1782</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-envelope" style="color:var(--orange)"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Email</div>
+              <div class="text-gray-400 text-sm">info@emex-xl.com<br/>www.emex-xl.com</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style="background:rgba(232,104,26,.15);border:1px solid rgba(232,104,26,.3)">
+              <i class="fas fa-clock" style="color:var(--orange)"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Operations</div>
+              <div class="text-gray-400 text-sm">24 hours / 7 days a week<br/>Including public holidays</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="fade-up" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:40px">
+        <h3 class="section-title text-white mb-6" style="font-size:22px">Procurement &amp; Partnership Enquiry</h3>
+        <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="form-label">First Name *</label>
+              <input type="text" id="fname" class="form-input" placeholder="John" required/>
+              <div class="text-red-400 text-xs mt-1 hidden" id="err-fname">Required</div>
+            </div>
+            <div>
+              <label class="form-label">Last Name *</label>
+              <input type="text" id="lname" class="form-input" placeholder="Smith" required/>
+              <div class="text-red-400 text-xs mt-1 hidden" id="err-lname">Required</div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Business Email *</label>
+            <input type="email" id="email" class="form-input" placeholder="you@company.com" required/>
+            <div class="text-red-400 text-xs mt-1 hidden" id="err-email">Please enter a valid business email address</div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Company Name *</label>
+            <input type="text" id="company" class="form-input" placeholder="Acme Mining Ltd." required/>
+            <div class="text-red-400 text-xs mt-1 hidden" id="err-company">Required</div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+233 ..."/>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Industry *</label>
+            <select id="industry" class="form-input" style="cursor:pointer">
+              <option value="">Select your industry...</option>
+              <option>Mining</option>
+              <option>Construction</option>
+              <option>Transport & Logistics</option>
+              <option>Telecommunication</option>
+              <option>Retail / Gas Station</option>
+              <option>Agriculture</option>
+              <option>Other</option>
+            </select>
+            <div class="text-red-400 text-xs mt-1 hidden" id="err-industry">Please select an industry</div>
+          </div>
+          <div class="mb-6">
+            <label class="form-label">Message / Requirements</label>
+            <textarea id="message" class="form-input" rows="4" placeholder="Describe your fuel requirements, volumes needed, or any questions..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full text-center">
+            <i class="fas fa-paper-plane mr-2"></i>Send Enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== FOOTER =========== -->
+<footer style="background:#0a0a0a;border-top:1px solid rgba(232,104,26,.2)">
+  <!-- Top footer -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-16 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Col 1: Company -->
+      <div>
+        <div style="font-family:'Oswald',sans-serif;margin-bottom:20px">
+          <span style="color:var(--orange);font-size:26px;font-weight:700">EMEX</span><span style="color:#fff;font-size:26px;font-weight:700">-XL</span>
+          <div style="font-size:9px;letter-spacing:3px;color:#777;text-transform:uppercase;margin-top:-2px">4Refueling Solutions</div>
+        </div>
+        <p class="text-gray-500 text-sm mb-5" style="line-height:1.8">Ghana's trusted partner for bulk fuel supply, on-site refueling, and industrial lubricant solutions since 2017.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#" class="w-8 h-8 flex items-center justify-center" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;font-size:14px;transition:all .2s" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='#aaa'">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;font-size:14px;transition:all .2s" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='#aaa'">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;font-size:14px;transition:all .2s" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='#aaa'">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div>
+        <div class="section-tag mb-5">Quick Links</div>
+        <a href="#about">About Us</a>
+        <a href="#services">Our Services</a>
+        <a href="#products">Products</a>
+        <a href="#sustainability">Safety &amp; ESG</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div>
+        <div class="section-tag mb-5">Our Services</div>
+        <a href="#services">Bulk Fuel Supply</a>
+        <a href="#services">On-Site Refueling</a>
+        <a href="#services">Lubricant Supply</a>
+        <a href="#">Fleet Management</a>
+        <a href="#">24/7 Emergency Fuel</a>
+        <a href="#">Fuel Management Consulting</a>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div>
+        <div class="section-tag mb-5">Contact</div>
+        <div class="text-gray-500 text-sm mb-4" style="line-height:1.8">
+          <i class="fas fa-location-dot mr-2" style="color:var(--orange)"></i>
+          Jaria Hse. No.21 Osu Badu Street,<br/>Dzorwulu-Accra, Ghana
+        </div>
+        <div class="text-gray-500 text-sm mb-3">
+          <i class="fas fa-phone mr-2" style="color:var(--orange)"></i>+233 (0) 30 278 3197
+        </div>
+        <div class="text-gray-500 text-sm mb-3">
+          <i class="fas fa-phone mr-2" style="color:var(--orange)"></i>+233 (0) 24 437 1782
+        </div>
+        <div class="text-gray-500 text-sm mb-5">
+          <i class="fas fa-envelope mr-2" style="color:var(--orange)"></i>info@emex-xl.com
+        </div>
+        <div class="p-4" style="background:rgba(232,104,26,.08);border:1px solid rgba(232,104,26,.2)">
+          <div class="text-xs tracking-widest uppercase text-gray-500 mb-2">Registration No.</div>
+          <div class="text-white font-semibold" style="font-family:'Oswald',sans-serif">CS225942017</div>
+          <div class="text-xs text-gray-500 mt-1">Licensed Oil Marketing Company (OMC)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="border-top:1px solid rgba(255,255,255,.06)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-gray-600 text-xs text-center md:text-left" style="line-height:1.7">
+        © 2025 Emex Petroleum Ghana Limited. All rights reserved. | Licensed under Ghana's Companies Code, 1963 (Act 179).
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors">Privacy Policy</a>
+        <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors">Terms of Use</a>
+        <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors">Compliance</a>
+        <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div id="toast">
+  <div class="flex items-start gap-3">
+    <i class="fas fa-check-circle text-green-400 text-xl mt-0.5"></i>
+    <div>
+      <div class="text-white font-semibold mb-1" style="font-family:'Oswald',sans-serif">Enquiry Sent Successfully</div>
+      <div class="text-gray-400 text-sm">Thank you! Our procurement team will contact you within one business day.</div>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+select option{background:#1a1a1a;color:#fff}
+</style>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar')
+  if(window.scrollY>50){nav.classList.add('scrolled')}
+  else{nav.classList.remove('scrolled')}
+})
+
+// Mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mobile-menu')
+  m.classList.toggle('open')
+}
+
+// Fade-up animation on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible')}
+  })
+},{threshold:0.12})
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el))
+
+// Tab switching
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'))
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'))
+  document.getElementById('tab-'+tab).classList.add('active')
+  document.getElementById('tab-content-'+tab).classList.add('active')
+}
+
+// Counter animation
+const counters=[
+  {id:'c-hours',target:50000,suffix:'K+',divisor:1000,decimals:0},
+  {id:'c-incidents',target:0,suffix:'',divisor:1,decimals:0},
+  {id:'c-litres',target:460,suffix:'K+',divisor:1,decimals:0},
+  {id:'c-clients',target:12,suffix:'+',divisor:1,decimals:0},
+]
+let countersStarted=false
+
+function startCounters(){
+  if(countersStarted)return
+  countersStarted=true
+  counters.forEach(({id,target,suffix,divisor,decimals})=>{
+    const el=document.getElementById(id)
+    const duration=2200
+    const steps=60
+    const step=target/steps
+    let current=0
+    const interval=setInterval(()=>{
+      current+=step
+      if(current>=target){
+        current=target
+        clearInterval(interval)
+      }
+      if(divisor>1){
+        el.textContent=Math.round(current/divisor)+suffix
+      } else {
+        el.textContent=Math.round(current)+suffix
+      }
+    },duration/steps)
+  })
+}
+
+const metricSection=document.getElementById('metrics-section')
+const metricObserver=new IntersectionObserver((entries)=>{
+  if(entries[0].isIntersecting)startCounters()
+},{threshold:0.3})
+metricObserver.observe(metricSection)
+
+// Form validation
+const freeEmailDomains=['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','live.com','aol.com','mail.com']
+
+function isBusinessEmail(email){
+  const domain=email.split('@')[1]||''
+  return domain.length>0 && !freeEmailDomains.includes(domain.toLowerCase())
+}
+
+function showErr(id,msg){
+  const el=document.getElementById('err-'+id)
+  if(el){el.textContent=msg||el.textContent;el.classList.remove('hidden')}
+}
+function hideErr(id){
+  const el=document.getElementById('err-'+id)
+  if(el)el.classList.add('hidden')
+}
+
+function handleSubmit(e){
+  e.preventDefault()
+  let valid=true
+
+  const fname=document.getElementById('fname').value.trim()
+  const lname=document.getElementById('lname').value.trim()
+  const email=document.getElementById('email').value.trim()
+  const company=document.getElementById('company').value.trim()
+  const industry=document.getElementById('industry').value
+
+  if(!fname){showErr('fname','First name is required');valid=false}else{hideErr('fname')}
+  if(!lname){showErr('lname','Last name is required');valid=false}else{hideErr('lname')}
+  if(!email||!email.includes('@')){showErr('email','Please enter a valid email address');valid=false}
+  else if(!isBusinessEmail(email)){showErr('email','Please use your business email address (not Gmail/Yahoo etc.)');valid=false}
+  else{hideErr('email')}
+  if(!company){showErr('company','Company name is required');valid=false}else{hideErr('company')}
+  if(!industry){showErr('industry','Please select your industry');valid=false}else{hideErr('industry')}
+
+  if(!valid)return
+
+  // Clear form
+  document.getElementById('contact-form').reset()
+
+  // Show toast
+  const toast=document.getElementById('toast')
+  toast.classList.add('show')
+  setTimeout(()=>toast.classList.remove('show'),4500)
+}
+</script>
+</body>
+</html>
